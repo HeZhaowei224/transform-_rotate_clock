@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>js时钟效果</title>
+        <style>
+            .clock{
+                width: 700px;
+                height: 650px;
+                margin: 50px auto;
+                background:url(1.jpg) no-repeat;
+                position: relative;
+                background-size:700px 650px;
+            }
+            .clock div{
+                width:700px;
+                height: 650px;
+                position: absolute;
+            }
+            .h{
+                background: url(h.png)no-repeat center center;
+background-size:80px 250px;
+            }
+            .m{
+                background: url(m.png)no-repeat center center;
+background-size:30px 350px;
+            }
+            .s{
+                background: url(s.png)no-repeat center center;
+                 width: 10px;
+                 height: 5px;
+                 background-size:30px 500px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="clock" id="clo">
+            <div class="h"></div>
+            <div class="m"></div>
+            <div class="s"></div>
+        </div>
+    </body>
+</html>
+<script type="text/javascript">
+    var clock = document.getElementById("clo");
+    var h = 0, m = 0 , s =0, ms = 0;
+    setInterval(function() {
+        var date=new Date();
+        ms = date.getMilliseconds();
+        s = date.getSeconds()+ms/1000;
+        m = date.getMinutes()+s/60;
+        h = date.getHours() % 12+m/60;
+        
+        clock.children[0].style.transform = "rotate("+h*30+"deg)";
+        clock.children[1].style.transform = "rotate("+m*6+"deg)";
+        clock.children[2].style.transform = "rotate("+s*6+"deg)";
+        //clock.children[2].style.transformOrigin="50% 50%";
+    },50);
+</script>
